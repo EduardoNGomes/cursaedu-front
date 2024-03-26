@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 // eslint-disable-next-line camelcase
 import { Saira, Saira_Stencil_One } from 'next/font/google'
 import './globals.css'
+import { Header } from '@/components/header'
 
 const displayFont = Saira({
   subsets: ['latin'],
@@ -28,8 +29,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`${titleFont.variable} ${displayFont.variable}`}>
-        {children}
+      <body
+        className={`${titleFont.variable} ${displayFont.variable} min-h-screen flex flex-col`}
+      >
+        <Header />
+        <main className="px-40 bg-background flex-1">{children}</main>
       </body>
     </html>
   )
