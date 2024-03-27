@@ -1,11 +1,13 @@
 'use client'
 import Link from 'next/link'
 import { Button } from '../ui/button'
-import { useAppSelector } from '@/lib/redux/hooks'
+import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks'
 import { selectorTotalValue } from '@/lib/redux/reduxFeatures/cart/cartSelector'
+import { cleanItems } from '@/lib/redux/reduxFeatures/cart/cartSlice'
 
 export const ShopCartPayment = () => {
   const totalValue = useAppSelector((state) => selectorTotalValue(state))
+  const dispatch = useAppDispatch()
 
   const valueToPay = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -23,6 +25,10 @@ export const ShopCartPayment = () => {
     style: 'currency',
     currency: 'BRL',
   }).format(totalValue + deliveryFeeValue)
+
+  const handleBuy = () => {
+    dispatch(cleanItems())
+  }
 
   return (
     <div className="bg-white h-full py-4 px-6 rounded-t-lg flex flex-col gap-5">
@@ -51,7 +57,10 @@ export const ShopCartPayment = () => {
       </h4>
 
       <div className="flex-1">
-        <Button className="h-11 bg-green-600 uppercase text-white w-full">
+        <Button
+          className="h-11 bg-green-600 uppercase text-white w-full"
+          onClick={handleBuy}
+        >
           finalizar a compra
         </Button>
       </div>

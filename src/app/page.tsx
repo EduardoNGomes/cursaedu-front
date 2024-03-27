@@ -1,3 +1,4 @@
+import { ProductProps } from '@/@types/productProps'
 import { Card } from '@/components/card'
 import { PaginationComponent } from '@/components/pagination'
 import {
@@ -8,96 +9,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { api } from '@/lib/axios'
 import Link from 'next/link'
 
-const mockCard = [
-  {
-    id: '123',
-    name: 'Caneca de cerâmica rústica',
-    price: 'R$ 40,00',
-    description: 'lorem ipsum dolor sit amet, consectetur',
-    image: '/caneca-01.jpg',
-  },
-  {
-    id: '123',
-    name: 'Caneca de cerâmica rústica',
-    price: 'R$ 40,00',
-    description: 'lorem ipsum dolor sit amet, consectetur',
-    image: '/caneca-01.jpg',
-  },
-  {
-    id: '123',
-    name: 'Caneca de cerâmica rústica',
-    price: 'R$ 40,00',
-    description: 'lorem ipsum dolor sit amet, consectetur',
-    image: '/caneca-01.jpg',
-  },
-  {
-    id: '123',
-    name: 'Caneca de cerâmica rústica',
-    price: 'R$ 40,00',
-    description: 'lorem ipsum dolor sit amet, consectetur',
-    image: '/caneca-01.jpg',
-  },
-  {
-    id: '123',
-    name: 'Caneca de cerâmica rústica',
-    price: 'R$ 40,00',
-    description: 'lorem ipsum dolor sit amet, consectetur',
-    image: '/caneca-01.jpg',
-  },
-  {
-    id: '123',
-    name: 'Caneca de cerâmica rústica',
-    price: 'R$ 40,00',
-    description: 'lorem ipsum dolor sit amet, consectetur',
-    image: '/caneca-01.jpg',
-  },
-  {
-    id: '123',
-    name: 'Caneca de cerâmica rústica',
-    price: 'R$ 40,00',
-    description: 'lorem ipsum dolor sit amet, consectetur',
-    image: '/caneca-01.jpg',
-  },
-  {
-    id: '123',
-    name: 'Caneca de cerâmica rústica',
-    price: 'R$ 40,00',
-    description: 'lorem ipsum dolor sit amet, consectetur',
-    image: '/caneca-01.jpg',
-  },
-  {
-    id: '123',
-    name: 'Caneca de cerâmica rústica',
-    price: 'R$ 40,00',
-    description: 'lorem ipsum dolor sit amet, consectetur',
-    image: '/caneca-01.jpg',
-  },
-  {
-    id: '123',
-    name: 'Caneca de cerâmica rústica',
-    price: 'R$ 40,00',
-    description: 'lorem ipsum dolor sit amet, consectetur',
-    image: '/caneca-01.jpg',
-  },
-  {
-    id: '123',
-    name: 'Caneca de cerâmica rústica',
-    price: 'R$ 40,00',
-    description: 'lorem ipsum dolor sit amet, consectetur',
-    image: '/caneca-01.jpg',
-  },
-  {
-    id: '123',
-    name: 'Caneca de cerâmica rústica',
-    price: 'R$ 40,00',
-    description: 'lorem ipsum dolor sit amet, consectetur',
-    image: '/caneca-01.jpg',
-  },
-]
+export default async function Home() {
+  const getProducts = async () => {
+    const { data } = await api.get('/')
 
-export default function Home() {
+    return data
+  }
+
+  const response = await getProducts()
+
   return (
     <div className="flex flex-col gap-4 pb-10 overflow-auto px-4">
       <nav className="flex justify-between items-start ">
@@ -165,7 +88,7 @@ export default function Home() {
             </Select>
 
             <PaginationComponent
-              numberOfPages={mockCard.length / 12}
+              numberOfPages={response.totalCount / 12}
               urlPages="#"
             />
           </div>
@@ -173,21 +96,21 @@ export default function Home() {
       </nav>
 
       <main className="grid grid-cols-4 gap-8">
-        {mockCard.map((card, i) => (
+        {response.products.map((card: ProductProps) => (
           <Card
             id={card.id}
             name={card.name}
             price={card.price}
             image={card.image}
             description={card.description}
-            key={i}
+            key={card.id}
           />
         ))}
       </main>
 
       <footer className="self-end">
         <PaginationComponent
-          numberOfPages={mockCard.length / 12}
+          numberOfPages={response.totalCount / 12}
           urlPages="#"
         />
       </footer>

@@ -1,20 +1,21 @@
+import { ProductProps } from '@/@types/productProps'
 import { ButtonAddProductToShopCart } from '@/components/buttonAddProductToShopCart'
+import { api } from '@/lib/axios'
 import { Undo2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-// My Post: {params.id}
+export default async function Product({ params }: { params: { id: string } }) {
+  const getProducts = async () => {
+    const { data } = await api.get(`/${params.id}`)
 
-const mockProduct = {
-  id: '123',
-  name: 'Caneca de cerâmica rústica',
-  price: 'R$ 40,00',
-  description: 'lorem ipsum dolor sit amet, consectetur',
-  image: '/caneca-01.jpg',
-  quantity: 1,
-}
+    return data
+  }
 
-export default function Product({ params }: { params: { id: string } }) {
+  const response: ProductProps = await getProducts()
+
+  console.log(response)
+
   return (
     <>
       <Link
