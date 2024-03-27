@@ -12,8 +12,8 @@ export const Header = async () => {
           className="flex items-center justify-center px-2
           bg-background
           rounded-lg
-          ring-black
-          focus-within:ring-1 focus-within:ring-offset-0
+          ring-orangerlow
+          focus-within:ring-1 focus-within:ring-offset-orangerlow
           w-80
         "
         >
