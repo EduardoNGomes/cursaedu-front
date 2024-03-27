@@ -6,11 +6,28 @@ import Link from 'next/link'
 
 import { selectorTotalProductsQuantity } from '@/lib/redux/reduxFeatures/cart/cartSelector'
 import { useAppSelector } from '@/lib/redux/hooks'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 export const Header = () => {
+  const [search, setSearch] = useState('')
+  const router = useRouter()
+
   const totalQuantityItem = useAppSelector((state) =>
     selectorTotalProductsQuantity(state),
   )
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      if (search !== '') {
+        console.log(search)
+        router.push(`?name=${search}`)
+      }
+    }, 600)
+
+    return () => clearTimeout(timerId)
+  }, [search, router])
+
   return (
     <header className="bg-white px-40 py-4">
       <div className="flex justify-between items-center max-w-[1140px] w-full mx-auto">
@@ -31,15 +48,15 @@ export const Header = () => {
           >
             <Input
               className="
-            bg-transparent
-            border-0 focus:border-none outline-none focus:outline-none
-            ring-offset-0
-            focus-visible:ring-0 focus-visible:ring-offset-0
-            font-display
-            text-sm
-            "
+                  bg-transparent
+                  border-0 focus:border-none outline-none focus:outline-none
+                  ring-offset-0
+                  focus-visible:ring-0 focus-visible:ring-offset-0
+                  font-display
+                  text-sm"
               placeholder="Procurando por algo específico?"
               type="text"
+              onChange={(e) => setSearch(e.target.value)}
             />
             <Search className="text-title" />
           </div>
