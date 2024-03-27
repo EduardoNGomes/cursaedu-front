@@ -28,6 +28,9 @@ const config = {
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         title: 'hsl(var(--title))',
+        display: 'hsl(var(--display))',
+        orangerlow: 'hsl(var(--orange-low))',
+        pagination: 'hsl(var(--pagination))',
         foreground: 'hsl(var(--foreground))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
