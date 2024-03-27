@@ -4,6 +4,8 @@ import { Saira, Saira_Stencil_One } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/header'
 
+import { StoreProvider } from './storeProvider'
+
 const displayFont = Saira({
   subsets: ['latin'],
   display: 'swap',
@@ -32,10 +34,12 @@ export default function RootLayout({
       <body
         className={`${titleFont.variable} ${displayFont.variable} min-h-screen flex flex-col max-h-screen overflow-hidden`}
       >
-        <Header />
-        <div className="flex-1 pt-8  max-w-[1140px] w-full mx-auto flex flex-col overflow-auto">
-          {children}
-        </div>
+        <StoreProvider>
+          <Header />
+          <div className="flex-1 pt-8  max-w-[1140px] w-full mx-auto flex flex-col overflow-auto">
+            {children}
+          </div>
+        </StoreProvider>
       </body>
     </html>
   )

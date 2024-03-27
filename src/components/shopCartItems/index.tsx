@@ -1,14 +1,15 @@
 'use client'
 
+import { useAppSelector } from '@/lib/redux/hooks'
 import { ShopCartProduct } from '../shopCartProduct'
 
 export const ShopCartItems = () => {
-  const items = Array.from({ length: 20 }, (_, i) => i + 1)
+  const { products } = useAppSelector((state) => state.cartReducer)
 
   return (
     <div className="flex flex-col gap-4 overflow-auto pr-2">
-      {items.map((item) => (
-        <ShopCartProduct key={item} />
+      {products.map((product) => (
+        <ShopCartProduct key={product.id} product={product} />
       ))}
     </div>
   )

@@ -1,8 +1,21 @@
+'use client'
+
 import { Trash2 } from 'lucide-react'
 import Image from 'next/image'
 import { SelectQuantityShopCart } from '../selectQuantityShopCart'
+import { useAppDispatch } from '@/lib/redux/hooks'
+import { decreaseItem } from '@/lib/redux/reduxFeatures/cart/cartSlice'
+import { ProductPropsWithQuantity } from '@/@types/productPropsWithQuantity'
 
-export const ShopCartProduct = () => {
+type ShopCartProductProps = {
+  product: ProductPropsWithQuantity
+}
+export const ShopCartProduct = ({ product }: ShopCartProductProps) => {
+  const dispatch = useAppDispatch()
+
+  const handleRemoveItemFromCart = () => {
+    dispatch(decreaseItem(product))
+  }
   return (
     <div className="flex gap-4 rounded-lg bg-white">
       <Image
@@ -17,7 +30,7 @@ export const ShopCartProduct = () => {
           <h4 className="text-display text-xl font-display font-light leading-8">
             Caneca de cerâmica rústica
           </h4>
-          <button>
+          <button onClick={handleRemoveItemFromCart}>
             <Trash2 className="h-5 w-5 text-red-600" />
           </button>
         </div>
@@ -29,7 +42,7 @@ export const ShopCartProduct = () => {
         </p>
 
         <div className="flex justify-between items-end ">
-          <SelectQuantityShopCart />
+          <SelectQuantityShopCart product={product} />
 
           <span className="font-semibold text-base leading-6 font-display">
             R$ 40,00

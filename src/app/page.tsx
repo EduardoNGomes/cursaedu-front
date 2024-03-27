@@ -12,58 +12,94 @@ import Link from 'next/link'
 
 const mockCard = [
   {
+    id: '123',
     name: 'Caneca de cerâmica rústica',
     price: 'R$ 40,00',
+    description: 'lorem ipsum dolor sit amet, consectetur',
+    image: '/caneca-01.jpg',
   },
   {
+    id: '123',
     name: 'Caneca de cerâmica rústica',
     price: 'R$ 40,00',
+    description: 'lorem ipsum dolor sit amet, consectetur',
+    image: '/caneca-01.jpg',
   },
   {
+    id: '123',
     name: 'Caneca de cerâmica rústica',
     price: 'R$ 40,00',
+    description: 'lorem ipsum dolor sit amet, consectetur',
+    image: '/caneca-01.jpg',
   },
   {
+    id: '123',
     name: 'Caneca de cerâmica rústica',
     price: 'R$ 40,00',
+    description: 'lorem ipsum dolor sit amet, consectetur',
+    image: '/caneca-01.jpg',
   },
   {
+    id: '123',
     name: 'Caneca de cerâmica rústica',
     price: 'R$ 40,00',
+    description: 'lorem ipsum dolor sit amet, consectetur',
+    image: '/caneca-01.jpg',
   },
   {
+    id: '123',
     name: 'Caneca de cerâmica rústica',
     price: 'R$ 40,00',
+    description: 'lorem ipsum dolor sit amet, consectetur',
+    image: '/caneca-01.jpg',
   },
   {
+    id: '123',
     name: 'Caneca de cerâmica rústica',
     price: 'R$ 40,00',
+    description: 'lorem ipsum dolor sit amet, consectetur',
+    image: '/caneca-01.jpg',
   },
   {
+    id: '123',
     name: 'Caneca de cerâmica rústica',
     price: 'R$ 40,00',
+    description: 'lorem ipsum dolor sit amet, consectetur',
+    image: '/caneca-01.jpg',
   },
   {
+    id: '123',
     name: 'Caneca de cerâmica rústica',
     price: 'R$ 40,00',
+    description: 'lorem ipsum dolor sit amet, consectetur',
+    image: '/caneca-01.jpg',
   },
   {
+    id: '123',
     name: 'Caneca de cerâmica rústica',
     price: 'R$ 40,00',
+    description: 'lorem ipsum dolor sit amet, consectetur',
+    image: '/caneca-01.jpg',
   },
   {
+    id: '123',
     name: 'Caneca de cerâmica rústica',
     price: 'R$ 40,00',
+    description: 'lorem ipsum dolor sit amet, consectetur',
+    image: '/caneca-01.jpg',
   },
   {
+    id: '123',
     name: 'Caneca de cerâmica rústica',
     price: 'R$ 40,00',
+    description: 'lorem ipsum dolor sit amet, consectetur',
+    image: '/caneca-01.jpg',
   },
 ]
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-4 pb-10 overflow-auto pr-2">
+    <div className="flex flex-col gap-4 pb-10 overflow-auto px-4">
       <nav className="flex justify-between items-start ">
         <ul className="flex gap-10 font-display uppercase text-display text-base font-semibold">
           <li>
@@ -138,7 +174,14 @@ export default function Home() {
 
       <main className="grid grid-cols-4 gap-8">
         {mockCard.map((card, i) => (
-          <Card name={card.name} price={card.price} image="" key={i} />
+          <Card
+            id={card.id}
+            name={card.name}
+            price={card.price}
+            image={card.image}
+            description={card.description}
+            key={i}
+          />
         ))}
       </main>
 

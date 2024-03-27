@@ -1,7 +1,29 @@
+'use client'
 import Link from 'next/link'
 import { Button } from '../ui/button'
+import { useAppSelector } from '@/lib/redux/hooks'
+import { selectorTotalValue } from '@/lib/redux/reduxFeatures/cart/cartSelector'
 
 export const ShopCartPayment = () => {
+  const totalValue = useAppSelector((state) => selectorTotalValue(state))
+
+  const valueToPay = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(totalValue)
+
+  const deliveryFeeValue = 40
+
+  const deliveryFee = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(deliveryFeeValue)
+
+  const finalValue = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(totalValue + deliveryFeeValue)
+
   return (
     <div className="bg-white h-full py-4 px-6 rounded-t-lg flex flex-col gap-5">
       <h2 className="mb-2 font-display font-semibold text-xl uppercase">
@@ -10,11 +32,11 @@ export const ShopCartPayment = () => {
 
       <div className="flex flex-col gap-3 mb-3">
         <h4 className="flex justify-between font-display text-base text-display">
-          Subtotal de produtos <span>R$ 161,00</span>
+          Subtotal de produtos <span>{valueToPay}</span>
         </h4>
 
         <h4 className="flex justify-between font-display text-base text-display">
-          Entrega <span>R$ 40,00</span>
+          Entrega <span>{deliveryFee}</span>
         </h4>
       </div>
       <div className="w-full h-[2px] bg-background"></div>
@@ -25,7 +47,7 @@ export const ShopCartPayment = () => {
           text-display font-display font-semibold text-base"
       >
         Total
-        <span>R$ 201,00</span>
+        <span>{finalValue}</span>
       </h4>
 
       <div className="flex-1">

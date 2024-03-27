@@ -1,9 +1,19 @@
-import { Button } from '@/components/ui/button'
-import { ShoppingBag, Undo2 } from 'lucide-react'
+import { ButtonAddProductToShopCart } from '@/components/buttonAddProductToShopCart'
+import { Undo2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 // My Post: {params.id}
+
+const mockProduct = {
+  id: '123',
+  name: 'Caneca de cerâmica rústica',
+  price: 'R$ 40,00',
+  description: 'lorem ipsum dolor sit amet, consectetur',
+  image: '/caneca-01.jpg',
+  quantity: 1,
+}
+
 export default function Product({ params }: { params: { id: string } }) {
   return (
     <>
@@ -57,12 +67,7 @@ export default function Product({ params }: { params: { id: string } }) {
             </p>
           </div>
 
-          <Button className="text-title text-white uppercase flex flex-row gap-3 bg-blueb">
-            <span>
-              <ShoppingBag className="w-[18px] h-[18px]" />
-            </span>
-            Adicionar ao carrinho
-          </Button>
+          <ButtonAddProductToShopCart product={mockProduct} />
         </aside>
       </main>
     </>

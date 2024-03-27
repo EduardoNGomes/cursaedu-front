@@ -1,20 +1,17 @@
+import { ProductProps } from '@/@types/productProps'
 import Image from 'next/image'
 import Link from 'next/link'
 
-type CardProps = {
-  name: string
-  price: string
-  image: string
-}
+type CardProps = ProductProps
 
-export const Card = ({ name, price }: CardProps) => {
+export const Card = ({ name, price, image, id }: CardProps) => {
   return (
     <Link
       className="w-64 flex flex-col gap-2 bg-white rounded-lg hover:cursor-pointer hover:scale-105 transition-transform duration-300"
-      href={`/product/${name}`}
+      href={`/product/${id}`}
     >
       <Image
-        src="/caneca-01.jpg"
+        src={image}
         alt="caneca"
         width={1000}
         height={1000}
