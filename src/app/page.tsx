@@ -63,7 +63,7 @@ const mockCard = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 pb-10 overflow-auto pr-2">
       <nav className="flex justify-between items-start ">
         <ul className="flex gap-10 font-display uppercase text-display text-base font-semibold">
           <li>

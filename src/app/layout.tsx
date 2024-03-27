@@ -30,10 +30,10 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body
-        className={`${titleFont.variable} ${displayFont.variable} min-h-screen flex flex-col`}
+        className={`${titleFont.variable} ${displayFont.variable} min-h-screen flex flex-col max-h-screen overflow-hidden`}
       >
         <Header />
-        <div className="flex-1 pt-8 pb-10 max-w-[1140px] w-full mx-auto">
+        <div className="flex-1 pt-8  max-w-[1140px] w-full mx-auto flex flex-col overflow-auto">
           {children}
         </div>
       </body>

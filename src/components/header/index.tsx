@@ -1,13 +1,16 @@
 import { Search, ShoppingBag } from 'lucide-react'
 import { Input } from '../ui/input'
+import Link from 'next/link'
 
 export const Header = async () => {
   return (
     <header className="bg-white px-40 py-4">
       <div className="flex justify-between items-center max-w-[1140px] w-full mx-auto">
-        <h1 className="font-title text-title text-[40px] leading-[60px]">
-          capputeeno
-        </h1>
+        <Link href="/">
+          <h1 className="font-title text-title text-[40px] leading-[60px]">
+            capputeeno
+          </h1>
+        </Link>
         <div className=" flex gap-6">
           <div
             className="flex items-center justify-center px-2
@@ -33,12 +36,16 @@ export const Header = async () => {
             <Search className="text-title" />
           </div>
 
-          <div className=" flex items-center relative">
+          <Link
+            className=" flex items-center relative"
+            href="/payment
+          "
+          >
             <ShoppingBag className="text-title " />
             <span className="text-[10px] absolute bottom-[2px] -right-1 text-white bg-red-600 w-4 h-4 rounded-full flex items-center justify-center">
               1
             </span>
-          </div>
+          </Link>
         </div>
       </div>
     </header>
