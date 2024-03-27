@@ -7,14 +7,12 @@ import Link from 'next/link'
 
 export default async function Product({ params }: { params: { id: string } }) {
   const getProducts = async () => {
-    const { data } = await api.get(`/${params.id}`)
+    const { data } = await api.get(`/product/${params.id}`)
 
-    return data
+    return data.product
   }
 
   const response: ProductProps = await getProducts()
-
-  console.log(response)
 
   return (
     <>
@@ -31,7 +29,7 @@ export default async function Product({ params }: { params: { id: string } }) {
       <main className="flex gap-8">
         <Image
           alt="Product image"
-          src="/caneca-01.jpg"
+          src={`${api.defaults.baseURL}/${response.image}`}
           width={1000}
           height={1000}
           className="w-[640px] h-[580px]"
@@ -39,15 +37,15 @@ export default async function Product({ params }: { params: { id: string } }) {
 
         <aside className="flex flex-col gap-3">
           <h3 className="text-display font-display text-base leading-6">
-            Caneca
+            {response.category === 'TSHIRT' ? 'camiseta' : 'caneca'}
           </h3>
 
           <div className="flex flex-col gap-1">
             <h1 className="text-display font-display text-3xl leading-[48px] font-light">
-              Caneca de cerâmica rústica
+              {response.name}
             </h1>
             <h2 className="font-display font-semibold leading-7 text-xl">
-              R$ 40,00
+              R$ {response.price}
             </h2>
           </div>
 
@@ -62,13 +60,11 @@ export default async function Product({ params }: { params: { id: string } }) {
             </h3>
 
             <p className="text-display text-sm leading-5">
-              Aqui vem um texto descritivo do produto, esta caixa de texto
-              servirá apenas de exemplo para que simule algum texto que venha a
-              ser inserido nesse campo, descrevendo tal produto.
+              {response.description}
             </p>
           </div>
 
-          <ButtonAddProductToShopCart product={mockProduct} />
+          <ButtonAddProductToShopCart product={response} />
         </aside>
       </main>
     </>

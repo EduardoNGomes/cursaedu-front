@@ -102,6 +102,7 @@ export default async function Home() {
             name={card.name}
             price={card.price}
             image={card.image}
+            category={card.category}
             description={card.description}
             key={card.id}
           />
