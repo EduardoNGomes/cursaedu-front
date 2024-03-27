@@ -31,6 +31,7 @@ const config = {
         display: 'hsl(var(--display))',
         orangerlow: 'hsl(var(--orange-low))',
         pagination: 'hsl(var(--pagination))',
+        blueb: 'hsl(var(--blue-brand))',
         foreground: 'hsl(var(--foreground))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',

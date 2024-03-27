@@ -11,9 +11,10 @@
     --card-foreground: 222.2 84% 4.9%;
 
     --title: 240, 8%, 40%, 1;
-    --display: 240, 5%, 48%, 1;
+    --display: 240, 8%, 28%, 1;
     --orange-low: 16, 100%, 76%, 1;
     --pagination: 240, 19%, 93%, 1;
+    --blue-brand: 203, 78%, 31%, 1;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
