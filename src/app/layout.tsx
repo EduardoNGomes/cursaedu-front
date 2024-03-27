@@ -33,7 +33,9 @@ export default function RootLayout({
         className={`${titleFont.variable} ${displayFont.variable} min-h-screen flex flex-col`}
       >
         <Header />
-        <main className="px-40 bg-background flex-1">{children}</main>
+        <div className="flex-1 pt-8 pb-10 max-w-[1140px] w-full mx-auto">
+          {children}
+        </div>
       </body>
     </html>
   )
