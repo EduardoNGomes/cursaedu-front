@@ -11,11 +11,16 @@ import {
 } from '@/components/ui/select'
 import { api } from '@/lib/axios'
 import Link from 'next/link'
+import { headers } from 'next/headers'
 
 export default async function Home() {
-  const getProducts = async () => {
-    const { data } = await api.get('/')
+  const headersList = headers()
+  const headerUrl = headersList.get('x-url') || ''
 
+  const params = headerUrl.split('?')[1]
+
+  const getProducts = async () => {
+    const { data } = await api.get(`/?${params}`)
     return data
   }
 

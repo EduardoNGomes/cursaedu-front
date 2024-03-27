@@ -19,10 +19,7 @@ export const Header = () => {
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      if (search !== '') {
-        console.log(search)
-        router.push(`?name=${search}`)
-      }
+      router.push(`?name=${search}`)
     }, 600)
 
     return () => clearTimeout(timerId)
