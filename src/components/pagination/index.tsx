@@ -7,27 +7,42 @@ import {
   Pagination,
 } from '../ui/pagination'
 
-export const PaginationComponent = () => {
+type PaginationComponentProps = {
+  numberOfPages: number
+  urlPages: string
+}
+
+export const PaginationComponent = ({
+  numberOfPages,
+  urlPages,
+}: PaginationComponentProps) => {
+  const pages = Array.from({ length: numberOfPages }, (_, i) => i + 1)
+
   return (
     <Pagination>
       <PaginationContent className="text-display text-sm font-display">
-        <PaginationItem>
-          <PaginationLink
-            href="#"
-            className="bg-gray-300 p-1 h-8 w-8 border-2 border-transparent hover:border-orangerlow"
-          >
-            1
-          </PaginationLink>
-        </PaginationItem>
+        {pages.map((page) => {
+          return (
+            <PaginationItem key={page}>
+              <PaginationLink
+                href={urlPages}
+                className="bg-gray-300 p-1 h-8 w-8 border-2 border-transparent hover:border-orangerlow hover:text-orangerlow"
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          )
+        })}
+
         <PaginationItem>
           <PaginationPrevious
-            href="#"
+            href={urlPages}
             className="bg-gray-300 p-1 h-8 w-8 border-2 border-transparent hover:border-orangerlow ml-1"
           />
         </PaginationItem>
         <PaginationItem>
           <PaginationNext
-            href="#"
+            href={urlPages}
             className="bg-gray-300 p-1 h-8 w-8 border-2 border-transparent hover:border-orangerlow"
           />
         </PaginationItem>
