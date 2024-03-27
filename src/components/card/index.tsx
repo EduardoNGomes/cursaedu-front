@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 type CardProps = {
   name: string
@@ -8,7 +9,10 @@ type CardProps = {
 
 export const Card = ({ name, price }: CardProps) => {
   return (
-    <div className="w-64 flex flex-col gap-2 bg-white rounded-lg">
+    <Link
+      className="w-64 flex flex-col gap-2 bg-white rounded-lg hover:cursor-pointer hover:scale-105 transition-transform duration-300"
+      href={`/product/${name}`}
+    >
       <Image
         src="/caneca-01.jpg"
         alt="caneca"
@@ -23,6 +27,6 @@ export const Card = ({ name, price }: CardProps) => {
           {price}
         </span>
       </div>
-    </div>
+    </Link>
   )
 }
