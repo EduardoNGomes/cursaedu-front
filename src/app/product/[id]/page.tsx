@@ -32,7 +32,7 @@ export default async function Product({ params }: { params: { id: string } }) {
           src={`${api.defaults.baseURL}/${response.image}`}
           width={1000}
           height={1000}
-          className="w-[240px] h-[280px] mx-auto rounded-lg"
+          className="w-[240px] h-[280px] sm:w-[640px] sm:h-[580px] mx-auto rounded-lg"
         />
 
         <aside className="flex flex-col gap-1 sm:gap-3">

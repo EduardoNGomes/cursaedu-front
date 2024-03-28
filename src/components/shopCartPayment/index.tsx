@@ -4,6 +4,7 @@ import { Button } from '../ui/button'
 import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks'
 import { selectorTotalValue } from '@/lib/redux/reduxFeatures/cart/cartSelector'
 import { cleanItems } from '@/lib/redux/reduxFeatures/cart/cartSlice'
+import { toast } from 'react-toastify'
 
 export const ShopCartPayment = () => {
   const totalValue = useAppSelector((state) => selectorTotalValue(state))
@@ -28,6 +29,7 @@ export const ShopCartPayment = () => {
 
   const handleBuy = () => {
     dispatch(cleanItems())
+    toast.success('Produto removido com sucesso')
   }
 
   return (

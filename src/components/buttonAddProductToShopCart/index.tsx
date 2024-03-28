@@ -4,6 +4,7 @@ import { Button } from '../ui/button'
 import { useAppDispatch } from '@/lib/redux/hooks'
 import { increaseItem } from '@/lib/redux/reduxFeatures/cart/cartSlice'
 import { ProductProps } from '@/@types/productProps'
+import { toast } from 'react-toastify'
 
 type ButtonAddProductToShopCartProps = {
   product: ProductProps
@@ -18,6 +19,7 @@ export const ButtonAddProductToShopCart = ({
     dispatch(
       increaseItem({ ...product, price: Number(product.price), quantity: 1 }),
     )
+    toast.success('Produto adicionado ao carrinho')
   }
 
   return (

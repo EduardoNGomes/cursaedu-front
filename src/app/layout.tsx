@@ -5,6 +5,7 @@ import './globals.css'
 import { Header } from '@/components/header'
 
 import { StoreProvider } from './storeProvider'
+import ToastProvider from './toastProvider'
 
 const displayFont = Saira({
   subsets: ['latin'],
@@ -34,12 +35,14 @@ export default function RootLayout({
       <body
         className={`${titleFont.variable} ${displayFont.variable} min-h-screen flex flex-col max-h-screen overflow-hidden`}
       >
-        <StoreProvider>
-          <Header />
-          <div className="flex-1 pt-8  max-w-[1140px] w-full mx-auto flex flex-col overflow-auto">
-            {children}
-          </div>
-        </StoreProvider>
+        <ToastProvider>
+          <StoreProvider>
+            <Header />
+            <div className="flex-1 pt-8  max-w-[1140px] w-full mx-auto flex flex-col overflow-auto">
+              {children}
+            </div>
+          </StoreProvider>
+        </ToastProvider>
       </body>
     </html>
   )
