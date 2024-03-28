@@ -38,21 +38,21 @@ export const Header = () => {
 
   return (
     <header className="bg-white px-40 py-4">
-      <div className="flex justify-between items-center max-w-[1140px] w-full mx-auto">
+      <div className="flex flex-col md:flex-row justify-between items-center max-w-[1140px] w-full mx-auto">
         <Link href="/">
           <h1 className="font-title text-title text-[40px] leading-[60px]">
             capputeeno
           </h1>
         </Link>
-        <div className=" flex gap-6">
+        <div className="flex gap-1 sm:gap-6">
           <div
             className="flex items-center justify-center px-2
-          bg-background
-          rounded-lg
-          ring-orangerlow
-          focus-within:ring-1 focus-within:ring-offset-orangerlow
-          w-80
-          "
+              bg-background
+              rounded-lg
+              ring-orangerlow
+              focus-within:ring-1 focus-within:ring-offset-orangerlow
+              w-80
+              "
           >
             <Input
               className="

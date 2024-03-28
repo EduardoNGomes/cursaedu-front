@@ -25,7 +25,10 @@ export const SelectQuantityShopCart = ({
   }
 
   return (
-    <Select onValueChange={handleChangeItemQuantity}>
+    <Select
+      onValueChange={handleChangeItemQuantity}
+      value={String(product.quantity)}
+    >
       <SelectTrigger className="w-[50px] border-display bg-background focus:ring-0 focus:ring-offset-0 focus:border-orangerlow text-display text-sm font-display gap-1 p-2 ">
         <SelectValue placeholder="1" />
       </SelectTrigger>

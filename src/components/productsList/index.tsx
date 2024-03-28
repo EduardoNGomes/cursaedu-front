@@ -8,20 +8,16 @@ import { api } from '@/lib/axios'
 export const ProductList = () => {
   const path = window.location.pathname
 
-  console.log(path)
-
   const [products, setProducts] = useState<ProductProps[]>([])
 
-  const getProducts = async () => {
-    const { data } = await api.get(path)
-
-    console.log(data)
-    setProducts(data.products)
-  }
-
   useEffect(() => {
+    const getProducts = async () => {
+      const { data } = await api.get(path)
+
+      setProducts(data.products)
+    }
     getProducts()
-  }, [])
+  }, [path])
 
   return (
     <main className="grid grid-cols-4 gap-8">
@@ -32,6 +28,7 @@ export const ProductList = () => {
           price={card.price}
           image={card.image}
           description={card.description}
+          category={card.category}
           key={i}
         />
       ))}

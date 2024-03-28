@@ -31,12 +31,12 @@ export const ShopCartPayment = () => {
   }
 
   return (
-    <div className="bg-white h-full py-4 px-6 rounded-t-lg flex flex-col gap-5">
+    <div className="bg-white h-full  py-1 py:4 px-6 rounded-t-lg flex flex-col  gap-2 sm:gap-5">
       <h2 className="mb-2 font-display font-semibold text-xl uppercase">
         Resumo do pedido
       </h2>
 
-      <div className="flex flex-col gap-3 mb-3">
+      <div className="flex flex-col gap-1 sm:gap-3  mb-1 sm:mb-3">
         <h4 className="flex justify-between font-display text-base text-display">
           Subtotal de produtos <span>{valueToPay}</span>
         </h4>
@@ -58,15 +58,15 @@ export const ShopCartPayment = () => {
 
       <div className="flex-1">
         <Button
-          className="h-11 bg-green-600 uppercase text-white w-full"
+          className="h-8 sm:h-10 bg-green-600 uppercase text-white w-full"
           onClick={handleBuy}
         >
           finalizar a compra
         </Button>
       </div>
 
-      <footer className="uppercase underline text-display text-sm font-medium pb-2">
-        <ul className="flex flex-col gap-3">
+      <footer className="uppercase underline text-display text-xs sm:text-sm font-medium pb-2">
+        <ul className="grid grid-cols-2  sm:flex sm:flex-col sm:gap-3">
           <li>
             <Link href="#">Ajuda</Link>
           </li>

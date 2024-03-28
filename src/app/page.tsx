@@ -32,15 +32,15 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col gap-4 pb-10 overflow-auto px-4">
-      <nav className="flex justify-between items-start ">
-        <ul className="flex gap-10 font-display uppercase text-display text-base font-semibold">
+      <nav className="flex flex-col sm:flex-row justify-between items-start">
+        <ul className="flex gap-4 sm:gap-10 font-display uppercase text-display text-base font-semibold ">
           <li>
             <Link
               className="pb-1 border-b-4  transition-all duration-300  border-b-orangerlow  text-black "
               href="/"
               prefetch={false}
             >
-              todos os produtos
+              todos <span className="hidden sm:inline">os produtos</span>
             </Link>
           </li>
           <li>
@@ -61,8 +61,8 @@ export default async function Home() {
           </li>
         </ul>
 
-        <div>
-          <div className="flex flex-col gap-6 pt-1">
+        <div className="self-end">
+          <div className="flex justify-between sm:flex-col gap-6 pt-1">
             <Select>
               <SelectTrigger className="w-[120px] bg-transparent border-none focus:ring-1 focus:ring-orangerlow focus:ring-offset-orangerlow text-display text-sm font-display gap-1 p-1">
                 <SelectValue placeholder="Organizar por" />
@@ -105,7 +105,7 @@ export default async function Home() {
         </div>
       </nav>
 
-      <main className="grid grid-cols-4 gap-8">
+      <main className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {response.products.map((card: ProductProps) => (
           <Card
             id={card.id}
