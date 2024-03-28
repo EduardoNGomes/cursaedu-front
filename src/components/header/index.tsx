@@ -18,6 +18,8 @@ export const Header = () => {
 
   const currentPage = searchParams.get('page') ?? 1
 
+  const currentName = searchParams.get('name')
+
   const firstCallHome =
     `${pathname}?${searchParams}` === '/?' ||
     `${pathname}?${searchParams}` === '/category/tshirt?' ||
@@ -30,11 +32,15 @@ export const Header = () => {
   useEffect(() => {
     const timerId = setTimeout(() => {
       if (search !== '' || firstCallHome !== true) {
-        router.push(`?name=${search}&page=${currentPage}`)
+        if (currentName !== '') {
+          router.push(`?name=${search}&page=${1}`)
+        } else {
+          router.push(`?name=${search}&page=${currentPage}`)
+        }
       }
     }, 600)
     return () => clearTimeout(timerId)
-  }, [search, router, firstCallHome, currentPage])
+  }, [search, router, firstCallHome, currentPage, currentName])
 
   return (
     <header className="bg-white px-40 py-4">

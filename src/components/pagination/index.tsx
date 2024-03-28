@@ -25,6 +25,10 @@ export const PaginationComponent = ({
 
   const pages = Array.from({ length: numberOfPages }, (_, i) => i + 1)
 
+  if (Number(currentPage) === 2 && pages.length === 1) {
+    currentUrl.split('page=')[0].concat(`page=${1}`)
+  }
+
   const alterPage = (newPage: string) => {
     if (currentUrl === '/?undefined') {
       return `/?name=&page=${newPage}`
