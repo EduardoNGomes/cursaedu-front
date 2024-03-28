@@ -10,17 +10,22 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { api } from '@/lib/axios'
-import Link from 'next/link'
-import { headers } from 'next/headers'
 
-export default async function Home() {
+import { headers } from 'next/headers'
+import Link from 'next/link'
+
+export default async function Category({
+  params,
+}: {
+  params: { type: string }
+}) {
   const headersList = headers()
   const headerUrl = headersList.get('x-url') || ''
 
-  const params = headerUrl.split('?')[1]
+  const query = headerUrl.split('?')[1]
 
   const getProducts = async () => {
-    const response = await api.get(`/?${params}`)
+    const response = await api.get(`/category/${params.type}?${query}`)
 
     if (response.status !== 200) {
       console.log(response.data)
@@ -36,16 +41,16 @@ export default async function Home() {
         <ul className="flex gap-10 font-display uppercase text-display text-base font-semibold">
           <li>
             <Link
-              className="pb-1 border-b-4  transition-all duration-300  border-b-orangerlow  text-black "
+              className="pb-1 border-b-4 transition-all border-b-transparent duration-300 hover:border-b-orangerlow hover:text-black"
               href="/"
-              prefetch={false}
             >
               todos os produtos
             </Link>
           </li>
           <li>
             <Link
-              className="pb-1 border-b-4 border-b-transparent transition-all duration-300  hover:border-b-orangerlow hover:text-title hover:text-black"
+              className={`pb-1 border-b-4 transition-all duration-300 
+              ${params.type === 'tshirt' ? 'border-b-orangerlow text-black' : 'border-b-transparent hover:text-black'}`}
               href="/category/tshirt"
             >
               camisetas
@@ -53,7 +58,8 @@ export default async function Home() {
           </li>
           <li>
             <Link
-              className="pb-1 border-b-4 border-b-transparent transition-all duration-300  hover:border-b-orangerlow hover:text-title hover:text-black"
+              className={`pb-1 border-b-4 transition-all duration-300 
+              ${params.type === 'mug' ? 'border-b-orangerlow text-black' : 'border-b-transparent hover:text-black'}`}
               href="/category/mug"
             >
               canecas

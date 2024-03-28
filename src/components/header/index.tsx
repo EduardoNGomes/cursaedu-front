@@ -18,7 +18,10 @@ export const Header = () => {
 
   const currentPage = searchParams.get('page') ?? 1
 
-  const firstCallHome = `${pathname}?${searchParams}` === '/?'
+  const firstCallHome =
+    `${pathname}?${searchParams}` === '/?' ||
+    `${pathname}?${searchParams}` === '/category/tshirt?' ||
+    `${pathname}?${searchParams}` === '/category/mug?'
 
   const totalQuantityItem = useAppSelector((state) =>
     selectorTotalProductsQuantity(state),
@@ -30,7 +33,6 @@ export const Header = () => {
         router.push(`?name=${search}&page=${currentPage}`)
       }
     }, 600)
-
     return () => clearTimeout(timerId)
   }, [search, router, firstCallHome, currentPage])
 
