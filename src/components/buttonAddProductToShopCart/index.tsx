@@ -15,8 +15,9 @@ export const ButtonAddProductToShopCart = ({
   const dispatch = useAppDispatch()
 
   const handleAddProductToShopCart = () => {
-    const newPrice = Number(product.price.split(' ')[1].replace(',', '.'))
-    dispatch(increaseItem({ ...product, price: newPrice, quantity: 1 }))
+    dispatch(
+      increaseItem({ ...product, price: Number(product.price), quantity: 1 }),
+    )
   }
 
   return (

@@ -1,3 +1,6 @@
+'use client'
+
+import { useSearchParams } from 'next/navigation'
 import {
   PaginationContent,
   PaginationItem,
@@ -9,14 +12,25 @@ import {
 
 type PaginationComponentProps = {
   numberOfPages: number
-  urlPages: string
+  currentUrl: string
 }
 
 export const PaginationComponent = ({
   numberOfPages,
-  urlPages,
+  currentUrl,
 }: PaginationComponentProps) => {
+  const searchParams = useSearchParams()
+
+  const currentPage = searchParams.get('page') ?? 1
+
   const pages = Array.from({ length: numberOfPages }, (_, i) => i + 1)
+
+  const alterPage = (newPage: string) => {
+    if (currentUrl === '/?undefined') {
+      return `/?name=&page=${newPage}`
+    }
+    return currentUrl.split('page=')[0].concat(`page=${newPage}`)
+  }
 
   return (
     <Pagination>
@@ -25,8 +39,14 @@ export const PaginationComponent = ({
           return (
             <PaginationItem key={page}>
               <PaginationLink
-                href={urlPages}
-                className="bg-gray-300 p-1 h-8 w-8 border-2 border-transparent hover:border-orangerlow hover:text-orangerlow"
+                href={alterPage(String(page))}
+                className={`bg-gray-300 p-1 h-8 w-8 border-2 border-transparent 
+                ${
+                  Number(currentPage) === page
+                    ? 'border-orangerlow bg-white text-display'
+                    : 'hover:border-orangerlow hover:text-orangerlow'
+                }
+                `}
               >
                 {page}
               </PaginationLink>
@@ -34,16 +54,24 @@ export const PaginationComponent = ({
           )
         })}
 
-        <PaginationItem>
+        <PaginationItem
+          className={`${pages[0] === Number(currentPage) ? ' cursor-not-allowed  ' : ''}`}
+        >
           <PaginationPrevious
-            href={urlPages}
-            className="bg-gray-300 p-1 h-8 w-8 border-2 border-transparent hover:border-orangerlow ml-1"
+            href={alterPage(String(Number(currentPage) - 1))}
+            className={`bg-gray-300 p-1 h-8 w-8 border-2 ml-1 
+              ${pages[0] === Number(currentPage) ? ' pointer-events-none cursor-not-allowed hover:bg-gray-300' : 'border-transparent hover:border-orangerlow'}
+            `}
           />
         </PaginationItem>
-        <PaginationItem>
+        <PaginationItem
+          className={`${pages.length <= Number(currentPage) ? ' cursor-not-allowed  ' : ''}`}
+        >
           <PaginationNext
-            href={urlPages}
-            className="bg-gray-300 p-1 h-8 w-8 border-2 border-transparent hover:border-orangerlow"
+            href={alterPage(String(Number(currentPage) + 1))}
+            className={`bg-gray-300 p-1 h-8 w-8 border-2 ml-1 
+            ${pages.length <= Number(currentPage) ? 'pointer-events-none cursor-not-allowed hover:bg-gray-300 ' : 'border-transparent hover:border-orangerlow'}
+          `}
           />
         </PaginationItem>
       </PaginationContent>

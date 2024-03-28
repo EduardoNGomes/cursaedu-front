@@ -6,12 +6,19 @@ import Link from 'next/link'
 
 import { selectorTotalProductsQuantity } from '@/lib/redux/reduxFeatures/cart/cartSelector'
 import { useAppSelector } from '@/lib/redux/hooks'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export const Header = () => {
   const [search, setSearch] = useState('')
   const router = useRouter()
+
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+
+  const currentPage = searchParams.get('page') ?? 1
+
+  const firstCallHome = `${pathname}?${searchParams}` === '/?'
 
   const totalQuantityItem = useAppSelector((state) =>
     selectorTotalProductsQuantity(state),
@@ -19,11 +26,13 @@ export const Header = () => {
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      router.push(`?name=${search}`)
+      if (search !== '' || firstCallHome !== true) {
+        router.push(`?name=${search}&page=${currentPage}`)
+      }
     }, 600)
 
     return () => clearTimeout(timerId)
-  }, [search, router])
+  }, [search, router, firstCallHome, currentPage])
 
   return (
     <header className="bg-white px-40 py-4">

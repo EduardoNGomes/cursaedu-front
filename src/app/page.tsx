@@ -20,8 +20,12 @@ export default async function Home() {
   const params = headerUrl.split('?')[1]
 
   const getProducts = async () => {
-    const { data } = await api.get(`/?${params}`)
-    return data
+    const response = await api.get(`/?${params}`)
+
+    if (response.status !== 200) {
+      console.log(response.data)
+    }
+    return response.data
   }
 
   const response = await getProducts()
@@ -57,7 +61,7 @@ export default async function Home() {
         </ul>
 
         <div>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 pt-1">
             <Select>
               <SelectTrigger className="w-[120px] bg-transparent border-none focus:ring-1 focus:ring-orangerlow focus:ring-offset-orangerlow text-display text-sm font-display gap-1 p-1">
                 <SelectValue placeholder="Organizar por" />
@@ -94,7 +98,7 @@ export default async function Home() {
 
             <PaginationComponent
               numberOfPages={response.totalCount / 12}
-              urlPages="#"
+              currentUrl={`/?${params}`}
             />
           </div>
         </div>
@@ -117,7 +121,7 @@ export default async function Home() {
       <footer className="self-end">
         <PaginationComponent
           numberOfPages={response.totalCount / 12}
-          urlPages="#"
+          currentUrl={`/?${params}`}
         />
       </footer>
     </div>
